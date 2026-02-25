@@ -23,7 +23,7 @@ python $env:USERPROFILE\.claude\plugins\mcp-scanner\scripts\update_signatures.py
 
 ## What's Included
 
-This feed extends MCP Scanner's 75 built-in signatures with additional patterns across these categories:
+This feed extends MCP Scanner's 81 built-in signatures with additional patterns across these categories:
 
 | Category | Patterns | Description |
 |----------|----------|-------------|
@@ -118,6 +118,17 @@ When you run `--fetch`, remote signatures are merged with your local `signatures
 | `fingerprint_flags` | No | Per-fingerprint regex flags |
 | `min_matches` | Yes (known_malicious) | Minimum fingerprint matches to trigger |
 
+## Using with MCP Scanner v1.4.0
+
+MCP Scanner v1.4.0 adds commands that work well with this signature feed:
+
+- **`/scan-remote user/repo`** — Scan a GitHub plugin before installing, using the latest signatures
+- **`/scan-diff path --since HEAD~1`** — After updating signatures with `--fetch`, re-scan to see if new patterns catch anything
+- **`/scan-history --trends`** — Track how risk levels change after signature updates
+- **`/export-sarif path -o report.sarif`** — Export findings (including community signature matches) in SARIF 2.1.0 for CI pipelines
+
+See the [MCP Scanner README](https://github.com/digitaltitann/mcp-scanner) for the full command list.
+
 ## Contributing
 
 1. Fork this repository
@@ -134,7 +145,7 @@ When you run `--fetch`, remote signatures are merged with your local `signatures
 - Test regex patterns against both malicious and benign code to minimize false positives
 - Include `context_note` to help the scanner's semantic analysis phase
 - For known malicious signatures, require at least 3 fingerprint matches to reduce false positives
-- Avoid overlapping with MCP Scanner's 75 built-in patterns
+- Avoid overlapping with MCP Scanner's 81 built-in patterns
 
 ## License
 
