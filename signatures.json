@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-02-24T00:00:00Z",
+  "updated": "2026-02-25T04:15:00Z",
   "source": "https://github.com/digitaltitann/mcp-signatures",
   "description": "Community threat signatures for MCP Scanner. Fetched via `python update_signatures.py --fetch`. Contributes new patterns beyond the scanner's 75 built-in signatures.",
 
@@ -60,10 +60,10 @@
       "category": "prompt-injection",
       "severity": "HIGH",
       "description": "Instruction override via XML-like system tags (<system>, <instructions>)",
-      "regex": "<(?:system|instructions|rules|context|prompt|override|admin)>",
+      "regex": "<(?:system|instructions|rules|override|admin)>\\s*(?:you|ignore|forget|always|never|must|override|from now)",
       "flags": "IGNORECASE",
       "file_types": [".md", ".mdx", ".txt"],
-      "context_note": "Fake XML system tags attempting to inject authoritative-looking instructions"
+      "context_note": "Fake XML system tags with directive content attempting to inject authoritative-looking instructions"
     },
     {
       "id": "EXT_PROMPT_007",
